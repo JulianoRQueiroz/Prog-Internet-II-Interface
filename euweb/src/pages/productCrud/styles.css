@@ -1,0 +1,54 @@
+.container{
+    max-width: 700px;
+    margin: 20px auto 0;
+    padding: 0 20px;
+}
+
+.container article{
+    background: #fff;
+    border: 1px solid #DDD;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.container article input{
+    font-size: 20px;
+    width: 100%;
+    border-color: #DDD;
+    margin-top: 5px;
+    line-height: 26px;
+}
+
+.container article textarea{
+    font-size: 20px;
+    width: 100%;
+    margin-top: 5px;
+    line-height: 26px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-color: #DDD;
+}
+
+.container label{
+    display: block;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.container .actions{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.container .btn{
+    padding: 10px;
+    border-radius: 5px;
+    border: 0;
+    background: #3878E5;
+    color: #fff;
+    font-size: 24px;
+    width: 800px;
+    font-weight: bold;
+    cursor: pointer;
+}

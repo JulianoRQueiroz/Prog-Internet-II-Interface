@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import api from '../../services/api';
 import { Link } from 'react-router-dom';
 
+
+import '../productCrud'
 import '../main/styles.css';
 
 export default class Main extends Component {
@@ -50,6 +52,11 @@ export default class Main extends Component {
 
         return (
             <div className="product-list">
+                <h4>Seja localizado</h4>
+                <article id="cadastro">
+                    <Link to={'/cadastro'}>Cadastre-se Já</Link>
+                </article>
+                <h3>Nossos parceiros</h3>
                 {produtos.map(produtos => (
                     <article key={produtos._id}>
                         <strong>{produtos.titulo}</strong>

@@ -33,6 +33,20 @@
     transition: all 0.2s;
 }
 
+h4,h3{
+    color: #000;
+    font-size: 40px;
+    text-align: center;
+    margin: 30px 30px;
+}
+
+#cadastro a{
+    background-color: #0c59da;
+    color: #ffff;
+    font-size: 24px;
+    border: 2px solid #000;
+}
+
 .product-list article a:hover {
     background: #3878E5;
     color: #fff;
