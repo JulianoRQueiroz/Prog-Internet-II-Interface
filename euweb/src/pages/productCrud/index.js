@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-// import { useForm } from "react-hook-form";
 import api from '../../services/api';
+// import { useHistory } from 'react-router-dom';
+
 
 
 import '../productCrud/styles.css';
@@ -11,54 +12,85 @@ export default class ProductCrud extends Component{
         super(props);
 
         this.state = {
-            produto: { titulo: '', descricao:'', url:'' }
+            titulo: '',
+            descricao: '',
+            url: '',
         };
     
-        this.handleChange = this.handleChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    async componentDidMount(){
-        const { id } = this.props.match.params;
+    componentDidMount() {
+        this.loadProducts();
+    }
+    loadProducts = async(page = 1) => {
+        const response = await api.get(`/api/produtos?page=${page}`);
 
-        const response = await api.get(`/api/produtos/${id}`);
+        const { docs, ...produtoInfo } = response.data;
 
-        this.setState({ produto: response.data })
+        this.setState({ produtos: docs, produtoInfo, page });
+
     }
 
+    
+    handleInputChange = e => {
+        this.setState({ [e.target.name]: e.target.value })
+    }
 
-    handleSubmit(produto, add = true) {
-        const list = this.state.list.filter(p => p.id !== produto.id)
-        if(add) list.unshift(produto)
-        return list
+    handleSubmit = e => {
+        alert("Solictação enviada");
+        e.preventDefault();
+        console.log(this.state)
+
+        // const { id } = this.props.match.params;
+
+        api.get(`/api/produtos`, this.state)
+            .then(response => {
+                // const list = this.getUpdatedList(response.data);
+                // this.setState({ state: this.state, list});
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
+    // getUpdatedList(id, add = true){
+    //     const list = this.state.list.filter(p => p._id !== id._id)
+    //     if(add) list.unshift(id)
+    //     return list
+    // }
+
+
+    clear(){
+        this.setState({state: this.state})
     }
     
-    handleChange(event) {
-        const produto = {...this.state.produto }
-        produto[event.target.name] = event.target.value
-        this.setState({ produto })
-    }
 
     
     render() {
+        const { titulo, descricao, url } = this.state
+
         return (
-            <form className="container" onSubmit={this.handleSubmit} >
+            <form className="container" >
             <h4>Formulário</h4>
             <article>
                 <label>
                 Titulo:
-                <input name="titulo"type="text" value={this.state.titulo} onChange={this.handleChange} />
+                <input name="titulo"type="text" value={titulo} onChange={this.handleInputChange} />
                 </label>
                 <label>
                 Descrição:
-                <textarea name="descricao" type="text" value={this.state.descricao} onChange={this.handleChange} />
+                <textarea name="descricao" type="text" value={descricao} onChange={this.handleInputChange} />
                 </label>
                 <label>
                 Url:
-                <input name="url"type="text" value={this.state.url} onChange={this.handleChange} />
+                <input name="url"type="text" value={url} onChange={this.handleInputChange} />
                 </label>
                 <div className="actions">
-                    <button className="btn" type="submit" value="Enviar">Salvar</button>
+                    <button className="btn" type="submit" onClick={e => this.handleSubmit(e)} value="Enviar">Salvar</button>
+                    <button className="btnCancelar" type="submit" onClick={e => this.clear(e)} value="Enviar">Cancelar</button>
                 </div>
             </article>
             </form>

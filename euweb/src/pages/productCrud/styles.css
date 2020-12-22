@@ -37,9 +37,10 @@
 
 .container .actions{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     margin: 20px;
 }
+
 
 .container .btn{
     padding: 10px;
@@ -48,7 +49,19 @@
     background: #3878E5;
     color: #fff;
     font-size: 24px;
-    width: 800px;
+    width: 150px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.container .btnCancelar{
+    padding: 10px;
+    border-radius: 5px;
+    border: 0;
+    background: rgb(199, 4, 4);
+    color: #fff;
+    font-size: 24px;
+    width: 150px;
     font-weight: bold;
     cursor: pointer;
 }
