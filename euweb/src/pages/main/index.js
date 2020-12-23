@@ -52,7 +52,7 @@ export default class Main extends Component {
 
         return (
             <div className="product-list">
-                <h4>Seja localizado</h4>
+                <h4>Seja encontrado</h4>
                 <article id="cadastro">
                     <Link to={'/cadastro'}>Cadastre-se Já</Link>
                 </article>

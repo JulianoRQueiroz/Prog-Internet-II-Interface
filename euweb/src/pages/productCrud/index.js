@@ -20,19 +20,6 @@ export default class ProductCrud extends Component{
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    componentDidMount() {
-        this.loadProducts();
-    }
-    loadProducts = async(page = 1) => {
-        const response = await api.get(`/api/produtos?page=${page}`);
-
-        const { docs, ...produtoInfo } = response.data;
-
-        this.setState({ produtos: docs, produtoInfo, page });
-
-    }
-
     
     handleInputChange = e => {
         this.setState({ [e.target.name]: e.target.value })
@@ -98,4 +85,97 @@ export default class ProductCrud extends Component{
     }
 }
 
+// state = {
+//         produto: [],
+//         titulo: {},
+//         descricao: {},
+//         url: {},
+//         page: 1,
+//     }
 
+//     componentDidMount() {
+//         this.loadProducts();
+//     }
+//     loadProducts = async() => {
+//         const response = await api.post(`/api/produtos`);
+
+//         const { docs, ...produtoInfo } = response.data;
+
+//         this.setState({ produtos: docs, produtoInfo, page });
+
+//     }
+    
+//     clear(){
+//         this.setState({produto: this.state.produto})
+//     }
+
+//     save(){
+//         const produto = this.state.produto;
+//         const method = produto._id ? 'put' : 'post';
+//         const url = produto._id ? `${api}/${produto._id}` : api;
+//         api[method](url.produto).then(response =>{
+//             const list = this.getUpdatedList(response.data);
+//             this.setState({ produto: this.state.produto, list});
+//         })
+//     }
+    
+//     getUpdatedList(produto, add = true){
+//         const list = this.state.list.filter(p => p._id !== produto._id)
+//         if(add) list.unshift(produto)
+//         return list
+//     }
+
+//     updateField(event){
+//         const produto = {...this.state.produto }
+//         produto[event.target.name] = event.target.value
+//         this.setState({ produto })
+//     }
+
+//     render() {
+//         return (
+//             <div className="container">
+//                 <h4>Formulário</h4>
+//                 <article onSubmit={this.handleSubmit}>
+//                     <label>Título da empresa:</label>
+//                     <input 
+//                         name="titulo"
+//                         type="text" 
+//                         placeholder="Digite o titulo da empresa..."
+//                         value={this.state.produto.titulo}
+//                         onChange={e => this.updateField(e)}>
+//                     </input>
+
+//                     <label>Descrição do produto:</label>
+//                     <textarea
+//                         name="descricao"
+//                         placeholder="Ex: Produtos de artesanato..."
+//                         value={this.state.produto.descricao}
+//                         onChange={e => this.updateField(e)}>  
+//                     </textarea>
+
+//                     <label>Facebook:</label>
+//                     <input 
+//                         name= "url"
+//                         type="text" 
+//                         placeholder="http://www.facebook.com"
+//                         value={this.state.produto.url}
+//                         onChange={e => this.updateField(e)}>
+//                     </input>
+//                 </article>
+//                 <div className="actions">
+//                     <button 
+//                         type="submit" 
+//                         className="btn" 
+//                         onClick={e => this.save(e)}>    
+//                         Salvar
+//                     </button>
+//                     <button 
+//                         type="submit" 
+//                         className="btnCancelar"  
+//                         onClick={e => this.clear(e)}>
+//                         Cancelar
+//                     </button>
+//                 </div>
+//             </div>
+//         ); 
+//     }
